@@ -1,10 +1,100 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Meu Site</title>
-  </head>
-  <body>
-    <h1>Bem-vindo ao meu site!</h1>
-    <p>Feito com GitHub Pages</p>
-  </body>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Gerador avançado de QR Code</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Gerador avançado de QR Code</h1>
+
+    <!-- Escolha do tipo -->
+    <div class="form-group">
+      <label>Tipo de QR Code:</label><br />
+      <select id="tipo" onchange="mostrarCamposExtras()">
+        <option value="url">URL</option>
+        <option value="pix">Chave Pix (payload)</option>
+        <option value="texto">Texto</option>
+        <option value="wifi">Wi‑Fi</option>
+        <option value="evento">Evento (iCal)</option>
+        <option value="vcard">Cartão de Visita (vCard)</option>
+      </select>
+    </div>
+
+    <!-- Campo único (URL / texto genérico / chave simples) -->
+    <div class="form-group" id="campo-geral">
+      <label for="entrada">Conteúdo:</label><br />
+      <textarea id="entrada" placeholder="Digite aqui..." rows="3"></textarea>
+    </div>
+
+    <!-- Campos PIX -->
+    <div class="form-group extras" id="pix-campos" style="display:none;">
+      <label>Chave Pix:</label>
+      <input type="text" id="pix-chave" placeholder="Telefone, E‑mail, CPF ou CNPJ" /><br />
+      <label>Nome do beneficiário (máx. 25 car.):</label>
+      <input type="text" id="pix-nome" placeholder="Nome" /><br />
+      <label>Cidade (máx. 15 car.):</label>
+      <input type="text" id="pix-cidade" placeholder="Cidade" /><br />
+      <label>Valor (opcional):</label>
+      <input type="number" id="pix-valor" placeholder="Ex.: 39.90" step="0.01" /><br />
+      <label>TxID (opcional):</label>
+      <input type="text" id="pix-txid" placeholder="Identificador da transação" />
+    </div>
+
+    <!-- Campos Wi‑Fi -->
+    <div class="form-group extras" id="wifi-campos" style="display:none;">
+      <label>SSID:</label><input type="text" id="wifi-ssid" /><br />
+      <label>Senha:</label><input type="text" id="wifi-senha" /><br />
+      <label>Segurança:</label>
+      <select id="wifi-seguranca">
+        <option value="WPA">WPA/WPA2</option>
+        <option value="WEP">WEP</option>
+        <option value="nopass">Sem senha</option>
+      </select>
+    </div>
+
+    <!-- Campos Evento -->
+    <div class="form-group extras" id="evento-campos" style="display:none;">
+      <label>Nome do Evento:</label><input type="text" id="evento-nome" /><br />
+      <label>Local:</label><input type="text" id="evento-local" /><br />
+      <label>Início:</label><input type="datetime-local" id="evento-inicio" /><br />
+      <label>Fim:</label><input type="datetime-local" id="evento-fim" />
+    </div>
+
+    <!-- Campos vCard -->
+    <div class="form-group extras" id="vcard-campos" style="display:none;">
+      <label>Nome:</label><input type="text" id="vcard-nome" /><br />
+      <label>Telefone:</label><input type="tel" id="vcard-telefone" /><br />
+      <label>Email:</label><input type="email" id="vcard-email" /><br />
+      <label>Empresa:</label><input type="text" id="vcard-empresa" />
+    </div>
+
+    <hr />
+
+    <!-- Personalização visual -->
+    <div class="form-group"><label>Cor do QR:</label><input type="color" id="cor-escura" value="#000000"></div>
+    <div class="form-group"><label>Cor de Fundo:</label><input type="color" id="cor-clara" value="#ffffff"></div>
+    <div class="form-group"><label>Tamanho(px):</label><input type="number" id="tamanho" value="256" min="100" max="1024" step="10"></div>
+    <div class="form-group"><label>Correção de erro:</label>
+      <select id="ecc">
+        <option value="L">L (baixo)</option><option value="M" selected>M (médio)</option>
+        <option value="Q">Q (alto)</option><option value="H">H (máx.)</option>
+      </select>
+    </div>
+    <div class="form-group"><label>Formato de download:</label>
+      <select id="formato"><option value="png">PNG</option><option value="jpeg">JPEG</option><option value="webp">WEBP</option></select>
+    </div>
+
+    <!-- Botões -->
+    <button id="btn-gerar" onclick="gerar()">Gerar QR Code</button>
+    <button id="btn-download" onclick="baixarQRCode()" style="display:none;">Baixar QR Code</button>
+
+    <canvas id="qrcode" style="margin-top:20px;"></canvas>
+  </div>
+
+  <script src="script.js"></script>
+</body>
 </html>
+
