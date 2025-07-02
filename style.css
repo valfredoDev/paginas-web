@@ -1,0 +1,74 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f2f5;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px;
+}
+
+.container {
+  background: #fff;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+  width: 380px;
+}
+
+h1 {
+  margin-bottom: 24px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  font-weight: 600;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+input[type="color"],
+input[type="datetime-local"],
+select,
+textarea {
+  width: 100%;
+  padding: 8px 10px;
+  margin-top: 6px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+button {
+  padding: 12px 20px;
+  margin-right: 10px;
+  background-color: #2e89ff;
+  border: none;
+  border-radius: 7px;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  user-select: none;
+}
+
+button#btn-download {
+  background-color: #28a745;
+}
+
+button:hover {
+  opacity: 0.9;
+}
